@@ -14,6 +14,8 @@ func main() {
 
 	keliling, luas := getKelilingAndLuas(7)
 	fmt.Printf("Keliling = %.2f\nLuas= %.2f", keliling, luas)
+
+	getTriangle(7)
 }
 
 func getKeliling(radius float32) (keliling float32) {
@@ -32,4 +34,14 @@ func getKelilingAndLuas(radius float32) (keliling float32, luas float32) {
 	luas = float32(math.Pi) * radius * radius
 
 	return keliling, luas
+}
+
+func getTriangle(tinggi int) {
+	for i := 0; i <= tinggi; i++ {
+		for j := 1; j <= i; j++ {
+			fmt.Print("*")
+		}
+
+		fmt.Println()
+	}
 }

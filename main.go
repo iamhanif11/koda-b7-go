@@ -10,6 +10,10 @@ import (
 	"github.com/iamhanif11/koda-b7-go/internals/minitask1"
 	"github.com/iamhanif11/koda-b7-go/internals/minitask2"
 	"github.com/iamhanif11/koda-b7-go/internals/minitask3"
+	"github.com/iamhanif11/koda-b7-go/internals/minitask6"
+	"github.com/iamhanif11/koda-b7-go/internals/minitask8"
+
+	"github.com/iamhanif11/koda-b7-go/internals/minitask7"
 	"github.com/iamhanif11/koda-b7-go/internals/models"
 )
 
@@ -23,6 +27,9 @@ func main() {
 		fmt.Println("4. Segitiga Siku-siku")
 		fmt.Println("5. Sisip angka")
 		fmt.Println("6. User")
+		fmt.Println("7. ReadFile")
+		fmt.Println("8. Person")
+		fmt.Println("9. Payment")
 		fmt.Println("0. Keluar")
 		fmt.Print("Pilih Menu: ")
 
@@ -94,8 +101,65 @@ func main() {
 			data := models.TampilinData()
 			fmt.Println(data)
 
+		case "7":
+			fmt.Println("Masukkan path file")
+			filepath, _ := reader.ReadString('\n')
+			filepath = strings.TrimSpace(filepath)
+
+			if filepath == "" {
+				fmt.Println("Path tidak boleh kosong")
+				continue
+			}
+
+			err := minitask6.ReadFile(filepath)
+			if err != nil {
+				fmt.Printf("Error: %n\n", err)
+			}
+			fmt.Println()
+
+		case "8":
+			p := minitask7.NewPerson("Hanif", "Padang", "12343221")
+
+			fmt.Println(p.Print())
+			p.Greet()
+
+			p.SetName("Hanif Irfan")
+			fmt.Println("Setelah set nama: ")
+			p.Greet()
+			fmt.Println()
+
+		case "9":
+
+			prices := []int{5000, 10000, 25000, 50000}
+			invalidPrices := []int{10000, -5000}
+
+			bank := minitask8.BankPayment{BankName: "BNI"}
+			online := minitask8.OnlinePayment{Platform: "Gopay"}
+			fiction := &minitask8.FictionPayment{}
+			fmt.Println("---Transaksi Bank---")
+			if err := bank.Pay(prices); err != nil {
+				fmt.Println(err)
+			}
+
+			fmt.Println("\n---Transaksi Online---")
+			if err := online.Pay(prices); err != nil {
+				fmt.Println(err)
+			}
+
+			fmt.Println("\n---Transaksi Invalid---")
+			if err := bank.Pay(invalidPrices); err != nil {
+				fmt.Println(err)
+			}
+
+			fmt.Println("\n---Fiction Transaksi----")
+			fiction.Pay(prices)
+			fiction.Pay([]int{20000})
+
+			fmt.Printf("Data di Slice: %v\n", fiction.TotalPayment)
 		}
+
 	}
+
 	// hasilKeliling := minitask1.GetKeliling(7)
 
 	// hasilLuas := minitask1.GetLuas(7)

@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	latihangoroutine "github.com/iamhanif11/koda-b7-go/internals/latihan-goroutine"
 	"github.com/iamhanif11/koda-b7-go/internals/minitask1"
 	"github.com/iamhanif11/koda-b7-go/internals/minitask2"
 	"github.com/iamhanif11/koda-b7-go/internals/minitask3"
@@ -30,6 +31,8 @@ func main() {
 		fmt.Println("7. ReadFile")
 		fmt.Println("8. Person")
 		fmt.Println("9. Payment")
+		fmt.Println("10. Coffeshop")
+		fmt.Println("11. Daily Routine")
 		fmt.Println("0. Keluar")
 		fmt.Print("Pilih Menu: ")
 
@@ -156,9 +159,31 @@ func main() {
 			fiction.Pay([]int{20000})
 
 			fmt.Printf("Data di Slice: %v\n", fiction.TotalPayment)
+
+		case "10":
+
+			fmt.Println("=== Coffee Shop Dibuka ===")
+			latihangoroutine.CoffeShop()
+			fmt.Println("=== Semua Pesanan Selesai, Toko Tutup ===")
+
+		case "11":
+			latihangoroutine.DailyRoutine()
 		}
 
 	}
+	// 	func main() {
+	// 	// BoardMessage()
+	// 	var wg sync.WaitGroup
+	// 	chn := make(chan string)
+
+	// 	wg.Add(2)
+	// 	go Sender(chn, &wg)
+
+	// 	go BoardMessage(chn, &wg)
+
+	// 	wg.Wait()
+
+	// }
 
 	// hasilKeliling := minitask1.GetKeliling(7)
 
